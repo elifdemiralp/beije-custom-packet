@@ -7,6 +7,9 @@ This project is a replica of the Custom Packet page of Beije website, built usin
 ## Demo
 
 ![](https://github.com/elifdemiralp/beije-custom-packet/blob/main/large-screen.gif)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
 ![](https://github.com/elifdemiralp/beije-custom-packet/blob/main/small-screen.gif)
 
 
