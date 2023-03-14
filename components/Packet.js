@@ -84,6 +84,43 @@ export default function CustomPackage() {
   const gunlukPedPaketleri = ["Günlük Ped", "Süper Günlük Ped"];
   const tamponPaketleri = ["Mini Tampon", "Standart Tampon"];
 
+  const [showPopup, setShowPopup] = useState(false);
+  const handleButtonClick = () => {
+    setShowPopup(true);
+  };
+
+  const Popup = () => (
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+      <div className="bg-white rounded-lg shadow-lg relative">
+        <button
+          onClick={() => setShowPopup(false)}
+          className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <Card
+        title="Özel Paketin"
+        subtitle="2 ayda 1 gönderim"
+        imageSrc="https://beije.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpacket.c4ec1969.png&w=828&q=75"
+        productQuantities={productQuantities}
+        onResetCategory={handleResetCategory}
+        totalCost={totalCost}
+      />
+      </div>
+    </div>
+  );
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setShowPopup(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="flex flex-row justify-center items-start bg-beije h-max text-black pt-48">
       <div className="m-6 flex justify-end reset-max-width" style={{"maxWidth": "40%"}}>
@@ -117,8 +154,19 @@ export default function CustomPackage() {
               <ProductSlider productName={"Standart Tampon"} value={standartTamponQuantity} min={0} max={60} step={10} onChange={(event, newValue) => setStandartTamponQuantity(newValue)}/>
             </div>
           </Tabs>
+          <div className="pt-8 text-lg flex justify-center items-center w-full text-white ">
+  <button
+    onClick={handleButtonClick}
+    className="p-2 rounded-2xl bg-[#343131] w-full disabled:bg-gray-200 disabled:text-gray-400 md:hidden block"
+  >
+    Paketini Gör
+  </button>
+</div>
+{showPopup && <Popup />}
+
         </div>
       </div>
+      
       </div>
       
       
